@@ -50,6 +50,10 @@ public class Cuenta{
 		movs.put( Fecha.toDay(), "Consulta: Saldo: $"+monto );
 	}
 
+	public void regI(double monto, double inter){
+		movs.put( Fecha.toDay(), "Interes: Saldo: $"+monto + " ("+ inter +"%)" );
+	}
+
 	public void setId( int id ){ this.id = id; }
 	public int getId(){ return this.id; }
 }

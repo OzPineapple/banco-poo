@@ -8,7 +8,10 @@ public class CtaAhorros extends Cuenta implements Impuestos {
 
 	public void consultar(){
 		movs.put( Fecha.toDay(), "Consulta" );
-		this.saldo += ( apertura.diff(Fecha.toDay()) % 30 ) * tasa;
+		int lapso = apertura.diff(Fecha.toDay());
+		saldo += ( lapso % 30 ) * tasa;
+		if(lapso > 30  ) pagarISRmensual();
+		if(lapso > 360 ) pagarISRanual();
 		System.out.println("\t"+this.getClass().getName() + " #" + id + " Fecha de apertura: " + apertura.toString() );
 		java.util.Iterator it = movs.keySet().iterator();
 		while(it.hasNext()){
@@ -17,11 +20,15 @@ public class CtaAhorros extends Cuenta implements Impuestos {
 		}
 	}
 	public void pagarISRmensual(){
-		if( saldo > 10000 )
+		if( saldo > 10000 ){
 			saldo *= 1 - ISRm;
+			regI(saldo, ISRm);
+		}
 	}
 	public void pagarISRanual(){
-		if( saldo > 50000 )
+		if( saldo > 50000 ){
 			saldo *= 1 - ISRa;
+			regI(saldo, ISRa);
+		}
 	}
 }

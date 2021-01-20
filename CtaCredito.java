@@ -28,8 +28,3 @@ public class CtaCredito extends Cuenta {
 		saldo = 0;
 	}
 }
-
-
-/* 
-
-*/

@@ -6,3 +6,6 @@ d:
 b:
 	rm -f *.class
 	javac *.java -g && jdb Banco
+
+clear:
+	rm -f *.class
